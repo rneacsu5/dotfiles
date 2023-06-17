@@ -19,8 +19,8 @@ zi light-mode for \
   OMZL::key-bindings.zsh \
   OMZP::git \
   OMZP::sudo \
-  OMZP::docker OMZP::docker/_docker \
-  OMZP::docker-compose OMZP::docker-compose/_docker-compose \
+  OMZP::docker \
+  OMZP::docker-compose \
   OMZP::kubectl \
   OMZP::helm \
   OMZP::golang OMZP::golang/_golang \
