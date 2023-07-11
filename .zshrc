@@ -39,11 +39,13 @@ zi pack="bgn-binary+keys" for fzf
 
 # Programs
 zi light-mode from="gh-r" pick="/dev/null" for \
-  mv="**/bat -> bat"              sbin="bat"                                                                               @sharkdp/bat         \
-  mv="**/exa -> exa"              sbin="exa"          atclone="cp -vf completions/exa.zsh _exa"          atpull="%atclone" @ogham/exa           \
-                                  sbin="plow"         atclone="./plow --completion-script-zsh > _plow"   atpull="%atclone" @six-ddc/plow        \
-  mv="**/velero -> velero"        sbin="velero"       atclone="./velero completion zsh > _velero"        atpull="%atclone" @vmware-tanzu/velero \
-  mv="**/kubelogin -> kubelogin"  sbin="kubelogin"    atclone="./kubelogin completion zsh > _kubelogin"  atpull="%atclone" @Azure/kubelogin
+  mv="**/bat -> bat"              sbin="bat"                                                                               @sharkdp/bat              \
+  mv="**/exa -> exa"              sbin="exa"          atclone="cp -vf completions/exa.zsh _exa"          atpull="%atclone" @ogham/exa                \
+                                  sbin="plow"         atclone="./plow --completion-script-zsh > _plow"   atpull="%atclone" @six-ddc/plow             \
+  mv="**/velero -> velero"        sbin="velero"       atclone="./velero completion zsh > _velero"        atpull="%atclone" @vmware-tanzu/velero      \
+  mv="**/kubelogin -> kubelogin"  sbin="kubelogin"    atclone="./kubelogin completion zsh > _kubelogin"  atpull="%atclone" @Azure/kubelogin          \
+                                  sbin="kubent"                                                                            @doitintl/kube-no-trouble \
+                                  sbin="dive"                                                                              @wagoodman/dive
 zi light-mode pick="/dev/null" for \
                                   sbin="kubectl-node_shell"                                                                @kvaps/kubectl-node-shell
 
