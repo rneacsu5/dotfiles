@@ -1,63 +1,45 @@
-# Setup ZI Shell
-ZI_INIT="${HOME}/.zi/init.zsh"
-[[ -r "${ZI_INIT}" ]] || { mkdir -p "$(dirname "${ZI_INIT}")" && curl -sL init.zshell.dev -o "${ZI_INIT}" }
-source "${ZI_INIT}" && zzinit
+# Init zpack
+# [[ -d "${HOME}/.zpack" ]] || git clone https://github.com/originalnexus/zpack.git "${HOME}/.zpack"
+[[ -d "${HOME}/.zpack" ]] || git clone git@github.com:OriginalNexus/zpack.git "${HOME}/.zpack"
+source "${HOME}/.zpack/zpack.zsh"
 
-# Add meta plugins and annexes
-zi light-mode for z-shell/z-a-meta-plugins @annexes 
+# ohmyzsh libraries
+zpack bundle omz-lib
 
-# Completions
-ZSH_CACHE_DIR="${ZI[HOME_DIR]}"
-zi light-mode for \
-  OMZL::git.zsh \
-  OMZL::history.zsh \
-  OMZL::vcs_info.zsh \
-  OMZL::completion.zsh \
-  OMZL::theme-and-appearance.zsh \
-  OMZL::prompt_info_functions.zsh \
-  OMZL::directories.zsh \
-  OMZL::key-bindings.zsh \
-  OMZP::git \
-  OMZP::sudo \
-  OMZP::docker \
-  OMZP::docker-compose \
-  OMZP::kubectl \
-  OMZP::helm \
-  OMZP::golang OMZP::golang/_golang \
-  OMZP::gcloud \
-  id-as="azure" https://github.com/Azure/azure-cli/raw/dev/az.completion
+# ohmyzsh plugins
+zpack omz plugins/git
+zpack omz plugins/sudo
+zpack omz plugins/docker
+zpack omz plugins/docker-compose
+zpack omz plugins/kubectl
+zpack omz plugins/helm
+zpack omz plugins/golang
+zpack omz plugins/gcloud
 
-# fzf
-FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---prompt='∼ ' --pointer='▶' --marker='✓'"
-FZF_CTRL_T_OPTS="--height 80% --preview '{ [[ -f {} ]] && bat -n --color=always {} } || { [[ -d {} ]] && exa --tree --icons {} }'"
-FZF_ALT_C_OPTS="$FZF_CTRL_T_OPTS"
-zi pack="bgn-binary+keys" for fzf
+# Other plugins
+zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
 
 # Programs
-zi light-mode from="gh-r" pick="/dev/null" for \
-  mv="**/bat -> bat"              sbin="bat"                                                                               @sharkdp/bat              \
-  mv="**/exa -> exa"              sbin="exa"          atclone="cp -vf completions/exa.zsh _exa"          atpull="%atclone" @ogham/exa                \
-                                  sbin="plow"         atclone="./plow --completion-script-zsh > _plow"   atpull="%atclone" @six-ddc/plow             \
-  mv="**/velero -> velero"        sbin="velero"       atclone="./velero completion zsh > _velero"        atpull="%atclone" @vmware-tanzu/velero      \
-  mv="**/kubelogin -> kubelogin"  sbin="kubelogin"    atclone="./kubelogin completion zsh > _kubelogin"  atpull="%atclone" @Azure/kubelogin          \
-                                  sbin="kubent"                                                                            @doitintl/kube-no-trouble \
-                                  sbin="dive"                                                                              @wagoodman/dive
-zi light-mode pick="/dev/null" for \
-                                  sbin="kubectl-node_shell"                                                                @kvaps/kubectl-node-shell
+zpack bundle fzf  --pattern '*linux_amd64*'       --preview --catppuccin
+zpack bundle bat  --pattern '*x86_64*linux-gnu*'
+zpack bundle exa  --pattern '*linux-x86_64-v*'
+zpack bundle plow --pattern '*linux_amd64.tar.gz'
 
-# powerlevel10k
-zi light-mode for @romkatv
+zpack release vmware-tanzu/velero      --pattern '*linux-amd64.tar.gz' --completion 'velero completion zsh > _velero'
+zpack release Azure/kubelogin          --pattern '*linux-amd64.zip'    --completion 'kubelogin completion zsh > _kubelogin'
+zpack release doitintl/kube-no-trouble --pattern '*linux-amd64.tar.gz'
+zpack release wagoodman/dive           --pattern '*linux_amd64.tar.gz'
+
+zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 
 # zsh-users
-zi light-mode for \
-  @zsh-users \
-  atload="bindkey \"$terminfo[kcuu1]\" history-substring-search-up && bindkey \"$terminfo[kcud1]\" history-substring-search-down" zsh-users/zsh-history-substring-search
+zpack bundle zsh-users
+
+# Theme
+zpack bundle powerlevel10k
+
+zpack apply
 
 # User config
 sudo ip link set mtu 1200 eth0
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
