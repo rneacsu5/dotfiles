@@ -43,5 +43,4 @@ zpack bundle powerlevel10k
 zpack apply
 
 # User config
-sudo ip link set mtu 1200 eth0
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
