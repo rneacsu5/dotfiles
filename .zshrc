@@ -17,22 +17,22 @@ zpack omz plugins/golang
 zpack omz plugins/gcloud
 
 # Other plugins
-zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
+(( $+commands[az] )) && zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
 
 # Programs
-zpack bundle fzf  --pattern '*linux_amd64*'       --preview --catppuccin
-zpack bundle bat  --pattern '*x86_64*linux-gnu*'
-zpack bundle exa  --pattern '*linux-x86_64-v*'
-zpack bundle plow --pattern '*linux_amd64.tar.gz'
+zpack bundle fzf  --preview --catppuccin
+zpack bundle bat
+zpack bundle exa
+zpack bundle plow
 
-zpack release vmware-tanzu/velero        --pattern '*linux-amd64.tar.gz' --completion 'velero completion zsh > _velero'
-zpack release Azure/kubelogin            --pattern '*linux-amd64.zip'    --completion 'kubelogin completion zsh > _kubelogin'
-zpack release doitintl/kube-no-trouble   --pattern '*linux-amd64.tar.gz'
-zpack release wagoodman/dive             --pattern '*linux_amd64.tar.gz'
-zpack release fluxcd/flux2               --pattern '*linux_amd64.tar.gz' --completion 'flux completion zsh > _flux'
-zpack release cloudflare/cf-terraforming --pattern '*linux_amd64.tar.gz' --completion 'cf-terraforming completion zsh > _cf-terraforming'
+zpack release vmware-tanzu/velero         --completion 'velero completion zsh > _velero'
+zpack release Azure/kubelogin             --completion 'kubelogin completion zsh > _kubelogin'
+zpack release doitintl/kube-no-trouble
+zpack release wagoodman/dive
+zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'
+zpack release cloudflare/cf-terraforming  --completion 'cf-terraforming completion zsh > _cf-terraforming'
 
-zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
+(( $+commands[kubectl] ))  && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 (( $+commands[boundary] )) && complete -o nospace -C boundary boundary
 
 # zsh-users
