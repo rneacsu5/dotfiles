@@ -1,6 +1,5 @@
 # Init zpack
-# [[ -d "${HOME}/.zpack" ]] || git clone https://github.com/originalnexus/zpack.git "${HOME}/.zpack"
-[[ -d "${HOME}/.zpack" ]] || git clone git@github.com:OriginalNexus/zpack.git "${HOME}/.zpack"
+[[ -d "${HOME}/.zpack" ]] || git clone https://github.com/originalnexus/zpack.git "${HOME}/.zpack"
 source "${HOME}/.zpack/zpack.zsh"
 
 # ohmyzsh libraries
@@ -17,7 +16,7 @@ zpack omz plugins/golang
 zpack omz plugins/gcloud
 
 # Other plugins
-(( $+commands[az] )) && zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
+[[ $+commands[az] == 1 ]] && zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
 
 # Programs
 zpack bundle fzf  --preview --catppuccin
@@ -32,8 +31,8 @@ zpack release wagoodman/dive
 zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'
 zpack release cloudflare/cf-terraforming  --completion 'cf-terraforming completion zsh > _cf-terraforming'
 
-(( $+commands[kubectl] ))  && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
-(( $+commands[boundary] )) && complete -o nospace -C boundary boundary
+[[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
+[[ $+commands[boundary] == 1 ]] && complete -o nospace -C boundary boundary
 
 # zsh-users
 zpack bundle zsh-users
