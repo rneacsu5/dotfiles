@@ -44,7 +44,3 @@ zpack apply
 
 # User config
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
-zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
-zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
-zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
