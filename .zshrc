@@ -19,8 +19,8 @@ zpack omz plugins/gcloud
 [[ $+commands[az] == 1 ]] && zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
 
 # Programs
-zpack bundle fzf  --preview --catppuccin
-zpack bundle bat
+zpack bundle fzf --catppuccin --preview
+zpack bundle bat --catppuccin
 zpack bundle exa
 zpack bundle plow
 
@@ -34,10 +34,8 @@ zpack release cloudflare/cf-terraforming  --completion 'cf-terraforming completi
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 [[ $+commands[boundary] == 1 ]] && complete -o nospace -C boundary boundary
 
-
-zpack snippet https://github.com/catppuccin/zsh-syntax-highlighting/raw/main/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 # zsh-users
-zpack bundle zsh-users
+zpack bundle zsh-users --catppuccin
 
 # Theme
 zpack bundle powerlevel10k
@@ -46,7 +44,3 @@ zpack apply
 
 # User config
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-bindkey '^H' backward-kill-word
-bindkey '5~' kill-word
-
-export BAT_THEME="Catppuccin-mocha"
