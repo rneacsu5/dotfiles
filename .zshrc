@@ -19,9 +19,9 @@ zpack omz plugins/gcloud
 [[ $+commands[az] == 1 ]] && zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
 
 # Programs
-zpack bundle fzf --catppuccin --preview
 zpack bundle bat --catppuccin
 zpack bundle exa
+zpack bundle fzf --catppuccin --preview
 zpack bundle plow
 
 zpack release vmware-tanzu/velero         --completion 'velero completion zsh > _velero'
