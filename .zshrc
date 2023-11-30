@@ -37,6 +37,7 @@ zpack release doitintl/kube-no-trouble
 zpack release wagoodman/dive
 zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'
 zpack release cloudflare/cf-terraforming  --completion 'cf-terraforming completion zsh > _cf-terraforming'
+zpack release terrastruct/d2
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 [[ $+commands[boundary] == 1 ]] && complete -o nospace -C boundary boundary
