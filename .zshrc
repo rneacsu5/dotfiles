@@ -22,6 +22,7 @@ zpack omz plugins/helm
 zpack omz plugins/golang
 zpack omz plugins/gcloud
 zpack omz plugins/gpg-agent
+zpack omz plugins/terraform
 
 # Other plugins
 [[ $+commands[az] == 1 ]] && zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
