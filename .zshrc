@@ -35,9 +35,9 @@ zpack bundle plow
 
 zpack release vmware-tanzu/velero         --completion 'velero completion zsh > _velero'
 zpack release Azure/kubelogin             --completion 'kubelogin completion zsh > _kubelogin'
-zpack release doitintl/kube-no-trouble
+zpack release doitintl/kube-no-trouble                                                                      --filter 'kubent'
 zpack release wagoodman/dive
-zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'
+zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'                        --filter 'flux'
 zpack release cloudflare/cf-terraforming  --completion 'cf-terraforming completion zsh > _cf-terraforming'
 zpack release terrastruct/d2
 
