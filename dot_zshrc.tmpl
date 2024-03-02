@@ -31,8 +31,10 @@ zpack omz plugins/terraform
 zpack bundle bat --catppuccin
 zpack bundle exa
 zpack bundle fzf --catppuccin --preview
-zpack bundle plow
+zpack bundle chezmoi
 
+{{- if eq .configType "work" }} 
+zpack bundle plow
 zpack release vmware-tanzu/velero         --completion 'velero completion zsh > _velero'
 zpack release Azure/kubelogin             --completion 'kubelogin completion zsh > _kubelogin'
 zpack release doitintl/kube-no-trouble                                                                      --filter 'kubent'
@@ -40,6 +42,7 @@ zpack release wagoodman/dive
 zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'                        --filter 'flux'
 zpack release cloudflare/cf-terraforming  --completion 'cf-terraforming completion zsh > _cf-terraforming'
 zpack release terrastruct/d2
+{{- end }}
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 [[ $+commands[boundary] == 1 ]] && complete -o nospace -C boundary boundary
@@ -51,6 +54,3 @@ zpack bundle zsh-users --catppuccin
 zpack bundle powerlevel10k
 
 zpack apply
-
-# User config
-alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

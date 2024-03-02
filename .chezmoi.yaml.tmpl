@@ -1,0 +1,4 @@
+{{- $configType := promptChoice "Choose the type of config" (list "personal" "work") -}}
+
+data:
+    configType: {{ $configType | quote }}
