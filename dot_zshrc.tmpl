@@ -43,11 +43,12 @@ zpack release wagoodman/dive
 zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'                        --name 'flux'
 zpack release cloudflare/cf-terraforming  --completion 'cf-terraforming completion zsh > _cf-terraforming'
 zpack release terrastruct/d2
+zpack release helm/chart-testing                                                                            --name 'ct'
+zpack release stackrox/kube-linter                                                                          --name 'kube-linter'
 {{- end }}
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 [[ $+commands[boundary] == 1 ]] && complete -o nospace -C boundary boundary
-[[ $+commands[tofu] == 1 ]] && complete -o nospace -C tofu tofu
 
 # zsh-users
 zpack bundle zsh-users --catppuccin
