@@ -1,0 +1,22 @@
+[includeIf "gitdir:~/personal/"]
+	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/.local/share/chezmoi/"]
+	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/.zpack/"]
+	path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/work/"]
+	path = ~/.gitconfig-work
+
+[pull]
+	rebase = true
+[core]
+	autocrlf = input
+[push]
+	default = current
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true

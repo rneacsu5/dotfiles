@@ -13,7 +13,7 @@ source "${HOME}/.zpack/zpack.zsh"
 zpack bundle omz-lib
 
 # ohmyzsh plugins
-{{- if eq .chezmoi.os "darwin" }} 
+{{- if eq .chezmoi.os "darwin" }}
 zpack omz plugins/brew
 {{- end }}
 zpack omz plugins/git
@@ -37,7 +37,7 @@ zpack bundle exa
 zpack bundle fzf --catppuccin --preview
 zpack bundle chezmoi
 
-{{- if eq .configType "work" }} 
+{{- if eq .configType "work" }}
 zpack bundle plow
 zpack release vmware-tanzu/velero         --completion 'velero completion zsh > _velero'
 zpack release Azure/kubelogin             --completion 'kubelogin completion zsh > _kubelogin'
@@ -52,11 +52,6 @@ zpack release stackrox/kube-linter                                              
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 [[ $+commands[boundary] == 1 ]] && complete -o nospace -C boundary boundary
 
-# Path variable
-mysql_bin_path="/opt/homebrew/opt/mysql-client/bin"
-[[ -d $mysql_bin_path ]] && path+=($mysql_bin_path)
-
-
 # zsh-users
 zpack bundle zsh-users --catppuccin
 
@@ -64,3 +59,7 @@ zpack bundle zsh-users --catppuccin
 zpack bundle powerlevel10k
 
 zpack apply
+
+# Other configs
+mysql_client_path="/opt/homebrew/opt/mysql-client/bin"
+[[ -d $mysql_client_path ]] && path+=($mysql_client_path)
