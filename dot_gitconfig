@@ -2,6 +2,8 @@
 	path = ~/.gitconfig-personal
 [includeIf "gitdir:~/.local/share/chezmoi/"]
 	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/.password-store/personal/"]
+	path = ~/.gitconfig-personal
 [includeIf "gitdir:~/.zpack/"]
 	path = ~/.gitconfig-personal
 
