@@ -13,6 +13,9 @@ source "${HOME}/.zpack/zpack.zsh"
 zpack bundle omz-lib
 
 # ohmyzsh plugins
+{{- if eq .chezmoi.os "darwin" }} 
+zpack omz plugins/brew
+{{- end }}
 zpack omz plugins/git
 zpack omz plugins/sudo
 zpack omz plugins/docker
@@ -24,9 +27,6 @@ zpack omz plugins/gcloud
 zpack omz plugins/gpg-agent
 zpack omz plugins/terraform
 zpack omz plugins/virtualenvwrapper
-{{- if eq .configType "work" }} 
-zpack omz plugins/brew
-{{- end }}
 
 # Other plugins
 [[ $+commands[az] == 1 ]] && zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
@@ -44,7 +44,6 @@ zpack release Azure/kubelogin             --completion 'kubelogin completion zsh
 zpack release doitintl/kube-no-trouble                                                                      --name 'kubent'
 zpack release wagoodman/dive
 zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'                        --name 'flux'
-zpack release cloudflare/cf-terraforming  --completion 'cf-terraforming completion zsh > _cf-terraforming'
 zpack release terrastruct/d2
 zpack release helm/chart-testing                                                                            --name 'ct'
 zpack release stackrox/kube-linter                                                                          --name 'kube-linter'
@@ -52,6 +51,11 @@ zpack release stackrox/kube-linter                                              
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 [[ $+commands[boundary] == 1 ]] && complete -o nospace -C boundary boundary
+
+# Path variable
+mysql_bin_path="/opt/homebrew/opt/mysql-client/bin"
+[[ -d $mysql_bin_path ]] && path+=($mysql_bin_path)
+
 
 # zsh-users
 zpack bundle zsh-users --catppuccin
