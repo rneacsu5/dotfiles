@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Init zpack
+ZPACK_THEME=catppuccin-mocha
 [[ -d "${HOME}/.zpack" ]] || git clone https://github.com/rneacsu5/zpack.git "${HOME}/.zpack"
 source "${HOME}/.zpack/zpack.zsh"
 
@@ -32,9 +33,9 @@ zpack omz plugins/virtualenvwrapper
 [[ $+commands[az] == 1 ]] && zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
 
 # Programs
-zpack bundle bat --catppuccin
+zpack bundle bat 
 zpack bundle exa
-zpack bundle fzf --catppuccin --preview
+zpack bundle fzf --preview --tab
 zpack bundle chezmoi
 
 {{- if eq .configType "work" }}
@@ -53,7 +54,7 @@ zpack release stackrox/kube-linter                                              
 [[ $+commands[boundary] == 1 ]] && complete -o nospace -C boundary boundary
 
 # zsh-users
-zpack bundle zsh-users --catppuccin
+zpack bundle zsh-users 
 
 # Theme
 zpack bundle powerlevel10k
@@ -63,3 +64,5 @@ zpack apply
 # Other configs
 mysql_client_path="/opt/homebrew/opt/mysql-client/bin"
 [[ -d $mysql_client_path ]] && path+=($mysql_client_path)
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+ulimit -n 2048
