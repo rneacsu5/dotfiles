@@ -65,5 +65,7 @@ zpack apply
 # Other configs
 mysql_client_path="/opt/homebrew/opt/mysql-client/bin"
 [[ -d $mysql_client_path ]] && path+=($mysql_client_path)
+gobin_path=${GOBIN:-${GOPATH:-$HOME/go}/bin}
+[[ -d $gobin_path ]] && path+=($gobin_path)
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 ulimit -n 2048
