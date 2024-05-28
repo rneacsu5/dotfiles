@@ -38,6 +38,7 @@ zpack bundle exa
 zpack bundle fzf --preview --tab
 zpack bundle chezmoi
 zpack bundle zoxide --cmd cd
+zpack release dandavison/delta --completion 'delta --generate-completion zsh > _delta'
 
 {{- if eq .configType "work" }}
 zpack bundle plow
