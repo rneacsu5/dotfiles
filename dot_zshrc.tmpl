@@ -33,12 +33,12 @@ zpack omz plugins/virtualenvwrapper
 [[ $+commands[az] == 1 ]] && zpack snippet https://github.com/Azure/azure-cli/raw/dev/az.completion
 
 # Programs
-zpack bundle bat 
+zpack bundle bat
 zpack bundle exa
 zpack bundle fzf --preview --tab
 zpack bundle chezmoi
 zpack bundle zoxide --cmd cd
-zpack release dandavison/delta --completion 'delta --generate-completion zsh > _delta'
+zpack bundle delta
 
 {{- if eq .configType "work" }}
 zpack bundle plow
@@ -56,7 +56,7 @@ zpack release stackrox/kube-linter                                              
 [[ $+commands[boundary] == 1 ]] && complete -o nospace -C boundary boundary
 
 # zsh-users
-zpack bundle zsh-users 
+zpack bundle zsh-users
 
 # Theme
 zpack bundle powerlevel10k
