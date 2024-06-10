@@ -71,11 +71,9 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
 end)
 
 -- Launch maximized
-local is_maximized = false
 wezterm.on('gui-startup', function(cmd)
   local tab, pane, window = mux.spawn_window(cmd or {})
   window:gui_window():maximize()
-  is_maximized = true
 end)
 
 -- Key bindings
@@ -107,7 +105,7 @@ config.keys = {
   { key = 'UpArrow', mods = 'SUPER|ALT', action = act.AdjustPaneSize{ 'Up', 1 } },
   { key = 'DownArrow', mods = 'SUPER|ALT', action = act.AdjustPaneSize{ 'Down', 1 } },
 
-  -- Pane tab and window controls 
+  -- Pane tab and window controls
   { key = 'd', mods = 'SUPER', action = act.SplitHorizontal{ domain =  'CurrentPaneDomain' } },
   { key = 'd', mods = 'SUPER|SHIFT', action = act.SplitVertical{ domain =  'CurrentPaneDomain' } },
   { key = 't', mods = 'SUPER', action = act.SpawnTab 'CurrentPaneDomain' },
@@ -118,13 +116,7 @@ config.keys = {
 
   -- Toggle maximized state
   { key = 'Enter', mods = 'SUPER', action = wezterm.action_callback(function(win, pane)
-    if is_maximized then
-      win:restore()
-      is_maximized = false
-    else
-      win:maximize()
-      is_maximized = true
-    end
+    win:maximize()
   end), },
 
   -- Text editting
@@ -144,7 +136,7 @@ config.keys = {
   { key = 'l', mods = 'SUPER', action = act.ShowLauncher },
   { key = 'p', mods = 'SUPER|SHIFT', action = act.ActivateCommandPalette },
 
-   -- MacOS backward and forward word 
+   -- MacOS backward and forward word
   { key = "LeftArrow", mods = "ALT", action = act.SendString("\x1bb") },
   { key = "RightArrow", mods = "ALT", action = act.SendString("\x1bf") },
 }
