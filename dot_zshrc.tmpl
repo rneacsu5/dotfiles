@@ -6,7 +6,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Init zpack
-ZPACK_THEME=catppuccin-mocha
 [[ -d "${HOME}/.zpack" ]] || git clone https://github.com/rneacsu5/zpack.git "${HOME}/.zpack"
 source "${HOME}/.zpack/zpack.zsh"
 
@@ -39,7 +38,7 @@ zpack bundle fzf --preview --tab
 zpack bundle chezmoi
 zpack bundle zoxide --cmd cd
 zpack bundle delta
-zpack release jesseduffield/lazygit
+zpack bundle lazygit
 
 {{- if eq .configType "work" }}
 zpack bundle plow

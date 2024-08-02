@@ -28,45 +28,45 @@ local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
 
 wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
   local index = tonumber(tab.tab_index) + 1
-	local is_first = index == 1
-	local is_last = index == #tabs
+  local is_first = index == 1
+  local is_last = index == #tabs
 
-  local background = color_scheme.tab_bar.inactive_tab.bg_color
-	local foreground = color_scheme.tab_bar.inactive_tab.fg_color
+  local background = color_scheme.background
+  local foreground = color_scheme.foreground
 
-	if tab.is_active then
-		background = color_scheme.tab_bar.active_tab.bg_color
-		foreground = color_scheme.tab_bar.active_tab.fg_color
-	elseif hover then
-		background = color_scheme.tab_bar.inactive_tab_hover.bg_color
-		foreground = color_scheme.tab_bar.inactive_tab_hover.fg_color
-	end
+  if tab.is_active then
+    background = color_scheme.selection_bg
+    foreground = color_scheme.selection_fg
+  elseif hover then
+    background = color_scheme.cursor_bg
+    foreground = color_scheme.cursor_fg
+  end
 
-	local leading_fg = color_scheme.tab_bar.inactive_tab.bg_color
-	local leading_bg = background
+  local leading_fg = color_scheme.background
+  local leading_bg = background
   local leading_txt = SOLID_RIGHT_ARROW
 
-	local trailing_fg = background
-	local trailing_bg = color_scheme.tab_bar.inactive_tab.bg_color
+  local trailing_fg = background
+  local trailing_bg = color_scheme.background
   local trailing_txt = SOLID_RIGHT_ARROW
 
-	if is_first then
+  if is_first then
     leading_txt = ""
-	end
+  end
 
-	if is_last then
+  if is_last then
     trailing_txt = ""
-	end
+  end
 
-	local title = index.." "..tab.active_pane.title
+  local title = index.." "..tab.active_pane.title
 
-	return {
-		{Background={Color=leading_bg}},  {Foreground={Color=leading_fg}},
-			{Text=leading_txt},
-		{Background={Color=background}},  {Foreground={Color=foreground}},
-			{Text=" "..title.." "},
-		{Background={Color=trailing_bg}}, {Foreground={Color=trailing_fg}},
-			{Text=trailing_txt},
+  return {
+    {Background={Color=leading_bg}},  {Foreground={Color=leading_fg}},
+      {Text=leading_txt},
+    {Background={Color=background}},  {Foreground={Color=foreground}},
+      {Text=" "..title.." "},
+    {Background={Color=trailing_bg}}, {Foreground={Color=trailing_fg}},
+      {Text=trailing_txt},
   }
 end)
 
