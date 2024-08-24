@@ -28,6 +28,7 @@ zpack omz plugins/gcloud
 zpack omz plugins/gpg-agent
 zpack omz plugins/terraform
 zpack omz plugins/virtualenvwrapper
+zpack omz plugins/dotenv
 
 # Programs
 zpack bundle bat
@@ -43,12 +44,12 @@ zpack release sxyazi/yazi
 zpack bundle plow
 zpack release vmware-tanzu/velero         --completion 'velero completion zsh > _velero'
 zpack release Azure/kubelogin             --completion 'kubelogin completion zsh > _kubelogin'
-zpack release doitintl/kube-no-trouble                                                                      --name 'kubent'
+zpack release doitintl/kube-no-trouble                                                                --name 'kubent'
 zpack release wagoodman/dive
-zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'                        --name 'flux'
+zpack release fluxcd/flux2                --completion 'flux completion zsh > _flux'                  --name 'flux'
 zpack release terrastruct/d2
-zpack release helm/chart-testing                                                                            --name 'ct'
-zpack release stackrox/kube-linter                                                                          --name 'kube-linter'
+zpack release helm/chart-testing          --completion 'ct completion zsh > _ct'                      --name 'ct'
+zpack release stackrox/kube-linter        --completion 'kube-linter completion zsh > _kube-linter'
 {{- end }}
 
 [[ $+commands[kubectl] == 1 ]] && zpack snippet --bin https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
