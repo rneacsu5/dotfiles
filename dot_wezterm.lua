@@ -20,6 +20,7 @@ config.default_cursor_style = 'BlinkingBar'
 config.animation_fps = 1
 config.scrollback_lines = 10000
 config.enable_scroll_bar = true
+config.tab_max_width = 20
 
 -- Style tabs
 config.use_fancy_tab_bar = false
@@ -30,6 +31,7 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
   local index = tonumber(tab.tab_index) + 1
   local is_first = index == 1
   local is_last = index == #tabs
+  local total_width = 4 -- 2 for the arrows and 2 for the padding
 
   local background = color_scheme.background
   local foreground = color_scheme.foreground
@@ -52,13 +54,20 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
 
   if is_first then
     leading_txt = ""
+    total_width = total_width - 1
   end
 
   if is_last then
     trailing_txt = ""
+    total_width = total_width - 1
   end
 
   local title = index.." "..tab.active_pane.title
+  total_width = total_width + #title
+
+  if total_width > config.tab_max_width then
+    title = title:sub(1, #title - (total_width - config.tab_max_width))
+  end
 
   return {
     {Background={Color=leading_bg}},  {Foreground={Color=leading_fg}},
