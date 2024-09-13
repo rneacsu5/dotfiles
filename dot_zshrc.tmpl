@@ -64,7 +64,7 @@ zpack bundle powerlevel10k
 zpack apply
 
 # Other configs
-mysql_client_path="/opt/homebrew/opt/mysql-client/bin"
+mysql_client_path="/opt/homebrew/opt/mysql-client@8.4/bin"
 [[ -d $mysql_client_path ]] && path+=($mysql_client_path)
 gobin_path=${GOBIN:-${GOPATH:-$HOME/go}/bin}
 [[ -d $gobin_path ]] && path+=($gobin_path)
