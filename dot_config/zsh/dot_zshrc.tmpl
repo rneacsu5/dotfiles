@@ -6,8 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Init zpack
-[[ -d "${HOME}/.zpack" ]] || git clone https://github.com/rneacsu5/zpack.git "${HOME}/.zpack"
-source "${HOME}/.zpack/zpack.zsh"
+[[ -d "${ZDOTDIR:-$HOME}/.zpack" ]] || git clone https://github.com/rneacsu5/zpack.git "${ZDOTDIR:-$HOME}/.zpack"
+source "${ZDOTDIR:-$HOME}/.zpack/zpack.zsh"
 
 # ohmyzsh libraries
 zpack bundle omz-lib
@@ -68,5 +68,6 @@ mysql_client_path="/opt/homebrew/opt/mysql-client@8.4/bin"
 [[ -d $mysql_client_path ]] && path+=($mysql_client_path)
 gobin_path=${GOBIN:-${GOPATH:-$HOME/go}/bin}
 [[ -d $gobin_path ]] && path+=($gobin_path)
+[[ -d $XDG_BIN_HOME ]] && path+=($XDG_BIN_HOME)
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 ulimit -n 2048

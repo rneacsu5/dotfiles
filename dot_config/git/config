@@ -1,14 +1,14 @@
 [includeIf "gitdir:~/personal/"]
-	path = ~/.gitconfig-personal
-[includeIf "gitdir:~/.local/share/chezmoi/"]
-	path = ~/.gitconfig-personal
-[includeIf "gitdir:~/.password-store/personal/"]
-	path = ~/.gitconfig-personal
-[includeIf "gitdir:~/.zpack/"]
-	path = ~/.gitconfig-personal
+	path = ./config-personal
+[includeIf "gitdir:~/.config/local/share/chezmoi/"]
+	path = ./config-personal
+[includeIf "gitdir:~/.config/local/share/password-store/personal/"]
+	path = ./config-personal
+[includeIf "gitdir:~/.config/zsh/.zpack/"]
+	path = ./config-personal
 
 [includeIf "gitdir:~/work/"]
-	path = ~/.gitconfig-work
+	path = ./config-work
 
 [pull]
 	rebase = true
