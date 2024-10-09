@@ -29,6 +29,7 @@ zpack omz plugins/gpg-agent
 zpack omz plugins/terraform
 zpack omz plugins/virtualenvwrapper
 zpack omz plugins/dotenv
+zpack omz plugins/1password
 
 # Programs
 zpack bundle bat
@@ -38,6 +39,7 @@ zpack bundle chezmoi
 zpack bundle zoxide --cmd cd
 zpack bundle delta
 zpack bundle lazygit
+zpack bundle k9s
 zpack release sxyazi/yazi
 
 {{- if eq .configType "work" }}
