@@ -79,10 +79,26 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
   }
 end)
 
--- Launch maximized
+-- Launch custom layout
 wezterm.on('gui-startup', function(cmd)
-  local tab, pane, window = mux.spawn_window(cmd or {})
-  window:gui_window():maximize()
+  local workspaces = {
+    personal = {
+      workdir = wezterm.home_dir .. "/personal",
+    },
+    work = {
+      workdir = wezterm.home_dir .. "/work",
+    }
+  }
+
+  for name, opt in pairs(workspaces) do
+    local tab, pane, window = mux.spawn_window {
+      workspace = name,
+      cwd = opt.workdir,
+    }
+    window:gui_window():maximize()
+  end
+
+  mux.set_active_workspace 'personal'
 end)
 
 -- Key bindings
@@ -142,7 +158,7 @@ config.keys = {
   -- Other actions
   { key = 'z', mods = 'SUPER', action = act.TogglePaneZoomState },
   { key = 'r', mods = 'SUPER', action = act.ReloadConfiguration },
-  { key = 'l', mods = 'SUPER', action = act.ShowLauncher },
+  { key = 'm', mods = 'SUPER|SHIFT', action = act.ShowLauncherArgs { flags = "WORKSPACES" } },
   { key = 'p', mods = 'SUPER|SHIFT', action = act.ActivateCommandPalette },
 
    -- MacOS backward and forward word
