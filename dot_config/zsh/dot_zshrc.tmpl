@@ -44,7 +44,7 @@ zpack release sxyazi/yazi
 
 {{- if eq .configType "work" }}
 zpack bundle plow
-zpack release vmware-tanzu/velero         --completion 'velero completion zsh > _velero'
+zpack release vmware-tanzu/velero@v1.7.1  --completion 'velero completion zsh > _velero'
 zpack release Azure/kubelogin             --completion 'kubelogin completion zsh > _kubelogin'
 zpack release doitintl/kube-no-trouble                                                                --name 'kubent'
 zpack release wagoodman/dive
